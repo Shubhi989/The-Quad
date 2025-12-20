@@ -1,0 +1,202 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* The Quad - Campus OS Design System
+   Dark theme with Electric Blue accent
+*/
+
+@layer base {
+  :root {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 14%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 16%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 199 89% 48%;
+    --primary-foreground: 222 47% 11%;
+
+    --secondary: 222 47% 20%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 222 47% 18%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 199 89% 48%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 47% 22%;
+    --input: 222 47% 22%;
+    --ring: 199 89% 48%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 222 47% 12%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 199 89% 48%;
+    --sidebar-primary-foreground: 222 47% 11%;
+    --sidebar-accent: 222 47% 20%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 222 47% 22%;
+    --sidebar-ring: 199 89% 48%;
+
+    --chart-1: 199 89% 48%;
+    --chart-2: 173 80% 40%;
+    --chart-3: 271 81% 56%;
+    --chart-4: 339 90% 51%;
+    --chart-5: 45 93% 47%;
+
+    /* Electric glow effects */
+    --glow-primary: 0 0 20px hsl(199 89% 48% / 0.4);
+    --glow-primary-lg: 0 0 40px hsl(199 89% 48% / 0.3);
+    --glow-success: 0 0 20px hsl(173 80% 40% / 0.4);
+    --glow-warning: 0 0 20px hsl(45 93% 47% / 0.4);
+    --glow-danger: 0 0 20px hsl(0 72% 50% / 0.4);
+
+    --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+    --shadow-glow: 0 4px 20px hsl(199 89% 48% / 0.15);
+    --shadow-glow-lg: 0 8px 40px hsl(199 89% 48% / 0.2);
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 14%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 16%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 199 89% 48%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 222 47% 20%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 222 47% 18%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 199 89% 48%;
+    --accent-foreground: 222 47% 11%;
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 222 47% 22%;
+    --input: 222 47% 22%;
+    --ring: 199 89% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-xl border border-border/50;
+  }
+
+  .glow-border {
+    @apply border border-primary/30;
+    box-shadow: var(--glow-primary);
+  }
+
+  .glow-border-hover:hover {
+    @apply border-primary/60;
+    box-shadow: var(--glow-primary-lg);
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary via-cyan-400 to-primary bg-clip-text text-transparent;
+  }
+
+  .card-glow {
+    @apply transition-all duration-300;
+  }
+
+  .card-glow:hover {
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+  }
+
+  .pulse-ring {
+    @apply absolute rounded-full border-2 border-primary/30;
+    animation: pulse-ring 2s ease-out infinite;
+  }
+
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(0.8);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+
+  @keyframes radar-sweep {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .radar-sweep {
+    animation: radar-sweep 3s linear infinite;
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .flip-card {
+    perspective: 1000px;
+  }
+
+  .flip-card-inner {
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+  }
+
+  .flip-card-inner.flipped {
+    transform: rotateY(180deg);
+  }
+
+  .flip-card-front,
+  .flip-card-back {
+    backface-visibility: hidden;
+  }
+
+  .flip-card-back {
+    transform: rotateY(180deg);
+  }
+}
